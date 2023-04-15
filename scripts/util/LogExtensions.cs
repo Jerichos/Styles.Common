@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Styles.Common.util
+namespace Styles.Common
 {
 public static class LogExtensions
 {
