@@ -21,6 +21,7 @@ public class SpritePropertyDrawer : PropertyDrawer
     private const float _textureSize = 65;
 
 
+    // TODO: fix width scaling. For example it happens when sprite field is defined in serialized struct
     public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
     {
         EditorGUI.BeginProperty(position, label, prop);
@@ -29,11 +30,11 @@ public class SpritePropertyDrawer : PropertyDrawer
         {
             position.width = EditorGUIUtility.labelWidth;
             GUI.Label(position, prop.displayName);
-
+            
             position.x += position.width;
             position.width = _textureSize;
             position.height = _textureSize;
-
+            
             prop.objectReferenceValue = EditorGUI.ObjectField(position, prop.objectReferenceValue, typeof(Sprite), false);
         }
         else
