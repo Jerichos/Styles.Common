@@ -6,21 +6,20 @@ public class UIPanel : MonoBehaviour, IUIPanel
 {
     public virtual void Open()
     {
-        gameObject.SetActive(true);
         OnOpen();
     }
 
     public virtual  void Close()
     {
-        gameObject.SetActive(false);
+        
         OnClose();
     }
 
     public virtual void Toggle()
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        var open = !gameObject.activeSelf;
         
-        if(gameObject.activeSelf)
+        if(open)
             OnOpen();
         else
             OnClose();
@@ -28,12 +27,12 @@ public class UIPanel : MonoBehaviour, IUIPanel
 
     protected virtual void OnOpen()
     {
-        
+        gameObject.SetActive(true);
     }
 
     protected virtual void OnClose()
     {
-        
+        gameObject.SetActive(false);
     }
 }
 }
