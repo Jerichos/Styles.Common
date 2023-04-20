@@ -28,7 +28,6 @@ public class UIPanel : MonoBehaviour, IUIPanel
 
     public virtual  void Close()
     {
-        Debug.Log("close");
         OnClose();
     }
 
