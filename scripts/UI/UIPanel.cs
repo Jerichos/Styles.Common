@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Styles.Common
 {
 public class UIPanel : MonoBehaviour, IUIPanel
 {
+    [SerializeField] private Button _buttonExit;
+    
     public virtual void Open()
     {
         OnOpen();
@@ -11,7 +15,7 @@ public class UIPanel : MonoBehaviour, IUIPanel
 
     public virtual  void Close()
     {
-        
+        Debug.Log("close");
         OnClose();
     }
 
@@ -24,7 +28,7 @@ public class UIPanel : MonoBehaviour, IUIPanel
         else
             OnClose();
     }
-
+    
     protected virtual void OnOpen()
     {
         gameObject.SetActive(true);
@@ -33,6 +37,19 @@ public class UIPanel : MonoBehaviour, IUIPanel
     protected virtual void OnClose()
     {
         gameObject.SetActive(false);
+    }
+
+    protected virtual void OnEnable()
+    {
+        Debug.Log("OnEnable");
+        if(_buttonExit)
+            _buttonExit.onClick.AddListener(Close);
+    }
+
+    protected virtual void OnDisable()
+    {
+        if(_buttonExit)
+            _buttonExit.onClick.RemoveAllListeners();
     }
 }
 }
