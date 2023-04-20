@@ -6,8 +6,21 @@ namespace Styles.Common
 {
 public class UIPanel : MonoBehaviour, IUIPanel
 {
+    [SerializeField] private bool _showOnStart;
     [SerializeField] private Button _buttonExit;
+    [SerializeField] protected GameObject _panel;
     
+    protected void Start()
+    {
+        if (!_panel)
+            _panel = gameObject;
+        
+        if(_showOnStart)
+            Open();
+        else
+            Close();
+    }
+
     public virtual void Open()
     {
         OnOpen();
@@ -21,7 +34,7 @@ public class UIPanel : MonoBehaviour, IUIPanel
 
     public virtual void Toggle()
     {
-        var open = !gameObject.activeSelf;
+        var open = !_panel.activeSelf;
         
         if(open)
             OnOpen();
@@ -31,12 +44,12 @@ public class UIPanel : MonoBehaviour, IUIPanel
     
     protected virtual void OnOpen()
     {
-        gameObject.SetActive(true);
+        _panel.SetActive(true);
     }
 
     protected virtual void OnClose()
     {
-        gameObject.SetActive(false);
+        _panel.SetActive(false);
     }
 
     protected virtual void OnEnable()

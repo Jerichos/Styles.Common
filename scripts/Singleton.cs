@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace Styles.Common
 {
-public abstract class Singleton<T> : MonoBehaviour where T : Behaviour
+public class Singleton<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private bool _dontDestroyOnLoad;
     
-    private T _instance;
+    private static T _instance;
 
-    public T Instance
+    public static T Instance
     {
         get
         {
@@ -34,7 +34,5 @@ public abstract class Singleton<T> : MonoBehaviour where T : Behaviour
         if(_dontDestroyOnLoad)
             DontDestroyOnLoad(gameObject);
     }
-    
-    
 }
 }
